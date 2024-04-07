@@ -1,0 +1,67 @@
+/* styles.css */
+
+/* Transitions for question container */
+.question-container {
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Custom radio button */
+input[type="radio"]:checked + label::before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: #48bb78; /* Green color for correct option */
+}
+
+/* Labels */
+label {
+  cursor: pointer;
+}
+
+/* Slide animations */
+.slide-up {
+  transition: transform 0.5s ease-in-out;
+  transform: translateY(-100%);
+}
+
+.slide-down {
+  transition: transform 0.5s ease-in-out;
+  transform: translateY(100%);
+}
+
+/* Transition animations for sliding left */
+.transition-slide-left-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.transition-slide-left-enter-active {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.transition-slide-left-exit {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+.transition-slide-left-exit-active {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+/* Decrease the speed of the background fill animation */
+.transition-colors {
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+
+/* Custom background color for selected option */
+.bg-opacity-custom {
+  background-color: rgba(255, 255, 255, 1);
+  color: #2563EB;
+}
