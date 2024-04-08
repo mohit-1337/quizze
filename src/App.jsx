@@ -112,14 +112,16 @@ function App() {
               className={`bg-[#0E46FD] h-1/2 flex flex-col justify-center rounded-b-md`}
             >
               <div
-                className={`text-left flex flex-col items-center absolute top-[50%] left-[20%] transform [-translate-x-1/2] [-translate-y-1/2] xl:top-[50vh] xl:left-[40.5vw] sm:top-[30vh] md:top-[50vh] md:left-[33.5%] ${
+                className={`text-left flex flex-col items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ${
                   isTransitioning ? "animate-bars div" : ""
                 }`}
               >
-                <div className="bg-white w-64 h-1.5 bg-opacity-60"></div>
-                <div className="bg-white w-60 h-1.5 bg-opacity-40"></div>
-                <div className="bg-white w-56 h-1.5 bg-opacity-20"></div>
-                <div className="bg-white w-52 h-1.5 bg-opacity-5"></div>
+                <div className="bg-white w-[15vw] h-1.5 bg-opacity-60"></div>
+                <div className="bg-white w-[14vw] h-1.5 bg-opacity-40"></div>
+                <div className="bg-white w-[15vw] h-1.5 bg-opacity-40"></div>
+                <div className="bg-white w-[15vw] h-1.5 bg-opacity-40"></div>
+                <div className="bg-white w-[14vw] h-1.5 bg-opacity-20"></div>
+                <div className="bg-white w-[12vw] h-1.5 bg-opacity-10"></div>
               </div>
 
               <div className="">
