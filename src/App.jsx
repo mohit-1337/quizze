@@ -116,12 +116,12 @@ function App() {
                   isTransitioning ? "animate-bars div" : ""
                 }`}
               >
-                <div className="bg-white w-[15vw] h-1.5 bg-opacity-60"></div>
-                <div className="bg-white w-[14vw] h-1.5 bg-opacity-40"></div>
-                <div className="bg-white w-[15vw] h-1.5 bg-opacity-40"></div>
-                <div className="bg-white w-[15vw] h-1.5 bg-opacity-40"></div>
-                <div className="bg-white w-[14vw] h-1.5 bg-opacity-20"></div>
-                <div className="bg-white w-[12vw] h-1.5 bg-opacity-10"></div>
+                <div className="bg-red-700 w-[15vw] h-1.5 bg-opacity-60"></div>
+                <div className="bg-red-700 w-[14vw] h-1.5 bg-opacity-40"></div>
+                <div className="bg-red-700 w-[15vw] h-1.5 bg-opacity-40"></div>
+                <div className="bg-red-700 w-[15vw] h-1.5 bg-opacity-40"></div>
+                <div className="bg-red-700 w-[14vw] h-1.5 bg-opacity-20"></div>
+                <div className="bg-red-700 w-[12vw] h-1.5 bg-opacity-10"></div>
               </div>
 
               <div className="">
