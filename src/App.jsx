@@ -51,7 +51,7 @@ function App() {
             isTransitioning ? "transition-slide-up" : ""
           }`}
         >
-          <div>
+          <div className="flex flex-col xl:gap-0 md:gap-6">
             <div className="flex items-center gap-16">
               <span
                 className="text-gray-500 text-2xl font-semibold cursor-pointer"
@@ -65,23 +65,23 @@ function App() {
               </span>
               <h3 className="text-2xl font-semibold mb-2">
                 {`0${currentQuestionIndex + 1}`}{" "}
-                <span className="text-gray-500 text-sm">
+                <span className="text-gray-500 text-sm ">
                   / {`0${questions.length}`}
                 </span>
               </h3>
             </div>
 
-            <div className="relative h-1 bg-gray-300 mt-4">
+            <div className="relative h-0.5 bg-gray-300 mt-4">
               <div
                 style={{ width: `${progressPercentage}%` }}
-                className="absolute left-0 bottom-0 bg-blue-500 h-full transition-width duration-500 ease-in-out"
+                className="absolute h-1 left-0 bottom-0  bg-blue-500 transition-width duration-500 ease-in-out"
               />
             </div>
           </div>
 
           <div className="text-left">
             {currentQuestionIndex < questions.length && (
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+              <h2 className="text-3xl md:text-4xl xl:text-2xl font-semibold text-gray-800 mb-4">
                 {questions[currentQuestionIndex].question}
               </h2>
             )}
@@ -93,13 +93,14 @@ function App() {
             isTransitioning ? "transition-slide-down" : ""
           }`}
         >
+          <div className="flex flex-col items-center absolute top-[50%] left-[20%] transform [-translate-x-1/2] [-translate-y-1/2] xl:top-[50vh] xl:left-[40.5vw] sm:top-[30vh] md:top-[50vh] md:left-[33.5%]">
+            <div className="bg-white w-64 h-1.5 bg-opacity-60"></div>
+            <div className="bg-white w-60 h-1.5 bg-opacity-40"></div>
+            <div className="bg-white w-56 h-1.5 bg-opacity-20"></div>
+            <div className="bg-white w-52 h-1.5 bg-opacity-5"></div>
+          </div>
+
           <div className="">
-            <div className="flex flex-col items-center absolute  top-[326px] left-[555px]">
-              <div className="bg-white w-64 h-1.5 bg-opacity-60"></div>
-              <div className="bg-white w-60 h-1.5 bg-opacity-40"></div>
-              <div className="bg-white w-56 h-1.5 bg-opacity-20"></div>
-              <div className="bg-white w-52 h-1.5 bg-opacity-5"></div>
-            </div>
             <div className="p-8">
               {currentQuestionIndex < questions.length && (
                 <div className="flex flex-col gap-2">
@@ -107,7 +108,7 @@ function App() {
                     (option, optionIndex) => (
                       <div
                         key={optionIndex}
-                        className={`border-l-4 border-white flex items-center bg-white bg-opacity-5 p-2 mb-2 cursor-pointer text-white transition-colors duration-300 ease-in-out ${
+                        className={`border-l-4 text-xl md:text-xl xl:text-sm border-white flex items-center bg-white bg-opacity-5 p-2 mb-2 cursor-pointer text-white transition-colors duration-300 ease-in-out ${
                           userSelections[currentQuestionIndex] === optionIndex
                             ? "bg-opacity-custom"
                             : ""
