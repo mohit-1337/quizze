@@ -62,9 +62,38 @@ label {
 
 /* Custom background color for selected option */
 .bg-opacity-custom {
-  background-color: rgba(255, 255, 255, 1);
+  position: relative;
   color: #0E46FD;
+  overflow: hidden;
 }
+
+.bg-opacity-custom::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 1) 100%, rgba(255, 255, 255, 0) 0%);
+  animation: fillBackground 1s linear forwards;
+}
+
+@keyframes fillBackground {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.option-text {
+  position: relative;
+  z-index: 1; 
+  font-weight: 600;
+}
+
+
 
 /* Keyframes for bars animation */
 @keyframes bars {
