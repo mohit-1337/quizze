@@ -6,7 +6,7 @@
 }
 
 /* Custom radio button */
-input[type="radio"]:checked + label::before {
+input[type="radio"]:checked+label::before {
   content: "";
   display: inline-block;
   width: 1rem;
@@ -63,5 +63,37 @@ label {
 /* Custom background color for selected option */
 .bg-opacity-custom {
   background-color: rgba(255, 255, 255, 1);
-  color: #2563EB;
+  color: #0E46FD;
+}
+
+/* Keyframes for bars animation */
+@keyframes bars {
+  100% {
+    transform: scaleY(1);
+  }
+  0% {
+    transform: scaleY(0);
+  }
+}
+
+/* Apply bars animation to div */
+.animate-bars div {
+  animation: bars 1s ease-in-out;
+}
+
+/* Animation for sliding up */
+@keyframes slideLeft {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Apply sliding up animation */
+.transition-slide-left {
+  animation: slideLeft 0.5s ease-in-out;
 }

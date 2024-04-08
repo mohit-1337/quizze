@@ -20,15 +20,22 @@ function App() {
       return updatedSelections;
     });
 
-    setIsTransitioning(true);
-
     setTimeout(() => {
-      setIsTransitioning(false);
       if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
       }
     }, 2000);
   };
+
+  useEffect(() => {
+    setIsTransitioning(true);
+
+    const timeoutId = setTimeout(() => {
+      setIsTransitioning(false);
+    }, 2000);
+
+    return () => clearTimeout(timeoutId);
+  }, [currentQuestionIndex]);
 
   useEffect(() => {
     if (
@@ -46,11 +53,7 @@ function App() {
   return (
     <div className="box-border bg-gray-100 h-screen flex items-center justify-center text-center flex-col">
       <div className="w-72 flex flex-col h-screen m-5">
-        <div
-          className={`bg-white h-1/2 p-8 flex flex-col justify-center rounded-t-md gap-7 ${
-            isTransitioning ? "transition-slide-up" : ""
-          }`}
-        >
+        <div className={`bg-white h-1/2 p-8 flex flex-col justify-center rounded-t-md gap-7`}>
           <div className="flex flex-col xl:gap-0 md:gap-6">
             <div className="flex items-center gap-16">
               <span
@@ -74,26 +77,22 @@ function App() {
             <div className="relative h-0.5 bg-gray-300 mt-4">
               <div
                 style={{ width: `${progressPercentage}%` }}
-                className="absolute h-1 left-0 bottom-0  bg-blue-500 transition-width duration-500 ease-in-out"
+                className="absolute h-1 left-0 bottom-0 bg-[#0E46FD] transition-width duration-500 ease-in-out"
               />
             </div>
           </div>
 
-          <div className="text-left">
+          <div className={`text-left ${isTransitioning ? "transition-slide-left" : ""}`}>
             {currentQuestionIndex < questions.length && (
-              <h2 className="text-3xl md:text-4xl xl:text-2xl font-semibold text-gray-800 mb-4">
+              <h2 className="text-3xl md:text-4xl xl:text-2xl font-semibold text-gray-800 mb-4 ">
                 {questions[currentQuestionIndex].question}
               </h2>
             )}
           </div>
         </div>
 
-        <div
-          className={`bg-blue-600 h-1/2 flex flex-col justify-center rounded-b-md ${
-            isTransitioning ? "transition-slide-down" : ""
-          }`}
-        >
-          <div className="flex flex-col items-center absolute top-[50%] left-[20%] transform [-translate-x-1/2] [-translate-y-1/2] xl:top-[50vh] xl:left-[40.5vw] sm:top-[30vh] md:top-[50vh] md:left-[33.5%]">
+        <div className={`bg-[#0E46FD] h-1/2 flex flex-col justify-center rounded-b-md`}>
+          <div className={`text-left flex flex-col items-center absolute top-[50%] left-[20%] transform [-translate-x-1/2] [-translate-y-1/2] xl:top-[50vh] xl:left-[40.5vw] sm:top-[30vh] md:top-[50vh] md:left-[33.5%] ${isTransitioning ? "animate-bars div" : ""}`}>
             <div className="bg-white w-64 h-1.5 bg-opacity-60"></div>
             <div className="bg-white w-60 h-1.5 bg-opacity-40"></div>
             <div className="bg-white w-56 h-1.5 bg-opacity-20"></div>
@@ -103,35 +102,22 @@ function App() {
           <div className="">
             <div className="p-8">
               {currentQuestionIndex < questions.length && (
-                <div className="flex flex-col gap-2">
-                  {questions[currentQuestionIndex].options.map(
-                    (option, optionIndex) => (
-                      <div
-                        key={optionIndex}
-                        className={`border-l-4 text-xl md:text-xl xl:text-sm border-white flex items-center bg-white bg-opacity-5 p-2 mb-2 cursor-pointer text-white transition-colors duration-300 ease-in-out ${
-                          userSelections[currentQuestionIndex] === optionIndex
-                            ? "bg-opacity-custom"
-                            : ""
-                        }`}
-                        onClick={() => {
-                          handleSelect(optionIndex);
-                          clearTimeout(timerRef.current);
-                        }}
-                      >
-                        <div className="flex gap-9">
-                          <span className="ml-5 mr-0">
-                            {String.fromCharCode(97 + optionIndex)}
-                          </span>
-                          <label
-                            htmlFor={`option_${optionIndex}`}
-                            className="flex-1 text-center"
-                          >
-                            {option.label}
-                          </label>
-                        </div>
+                <div className={`flex flex-col gap-2 ${isTransitioning ? "transition-slide-left" : ""}`}>
+                  {questions[currentQuestionIndex].options.map((option, optionIndex) => (
+                    <div
+                      key={optionIndex}
+                      className={`border-l-4 text-xl md:text-xl xl:text-sm border-white flex items-center bg-white bg-opacity-5 p-2 mb-2 cursor-pointer text-white transition-colors duration-300 ease-in-out ${userSelections[currentQuestionIndex] === optionIndex ? "bg-opacity-custom" : ""}`}
+                      onClick={() => {
+                        handleSelect(optionIndex);
+                        clearTimeout(timerRef.current);
+                      }}
+                    >
+                      <div className="flex gap-9">
+                        <span className="ml-5 mr-0">{String.fromCharCode(97 + optionIndex)}</span>
+                        <label htmlFor={`option_${optionIndex}`} className="flex-1 text-center">{option.label}</label>
                       </div>
-                    )
-                  )}
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
